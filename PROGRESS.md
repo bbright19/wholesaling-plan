@@ -4,6 +4,16 @@
 
 ---
 
+## ▶️ START HERE TOMORROW — Next 3 Steps (Phase 2)
+
+1. **Pick your target area** — choose 1-2 MD/DC zip codes or neighborhoods to focus on.
+2. **Run comps on 10 recent sales** — use `tools/comp-analyzer.html`; pull sold comps from Zillow/Redfin, calc $/sqft, estimate ARV. This is the Phase 2 milestone.
+3. **Drive the target area** — note distressed properties (overgrown yards, boarded windows, code notices, full mailboxes) and where the good/rough block lines are.
+
+*Resume cue: "Pull up my wholesaling repo, read PROGRESS.md, let's do the next 3 steps."*
+
+---
+
 ## Current Status
 
 - **Current Phase:** Phase 2 — Know Your Market (Weeks 3-4)
@@ -27,7 +37,6 @@
 - [ ] Phase 2: Drive the target area, note distressed properties
 - [ ] Watch 3-5 Wholesaling Inc / Jamil Damji videos
 - [ ] Read "If You Can't Wholesale After This" (Todd Fleming)
-- [ ] Pick 1-2 target zip codes/neighborhoods (lean MD/DC)
 - [ ] Find a real estate attorney — bring the questions in `legal-notes.md`
 - [ ] Identify an investor-friendly title company
 
@@ -77,3 +86,8 @@
 - Discussed why wholesalers use free comps instead of paid appraisals (speed, volume economics, ARV vs as-is, buyer does final diligence).
 - Built `tools/comp-analyzer.html` — enter sold comps, auto-calc $/sqft, average, and estimate ARV; flags wide spreads/outliers.
 - Next: practice on 10 real sales in target MD/DC area to hit the Phase 2 milestone.
+
+
+### 2026-06-08 (session 3 cont.)
+- Covered deal protection: anti-circumvention rules and contract exclusivity (ratified contract = time-limited exclusive right to buy, contingent on performance). Saved to deal-checklist.md and legal-notes.md.
+- Paused here. Saved next 3 Phase 2 steps for tomorrow (see START HERE TOMORROW block).
