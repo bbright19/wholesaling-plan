@@ -1,5 +1,17 @@
 # Real Estate Wholesaling Learning Plan
 
+## Tools & Templates in this Repo
+- **`tools/deal-calculator.html`** — 70% rule MAO calculator. Open in any browser.
+- **`tools/lead-tracker.html`** — Pipeline tracker, saves to your browser, export to JSON/CSV.
+- **`tools/index.html`** — Landing page linking both tools.
+- **`templates/seller-scripts.md`** — Cold outreach, discovery questions, objection handling.
+- **`templates/buyers-list.md`** — Cash buyers list template + where to find them.
+- **`templates/deal-checklist.md`** — Lead-to-close checklist + legal checklist.
+
+> To use the HTML tools: download the repo (or the file) and open the `.html` file in your browser. No install needed.
+
+---
+
 ## Your Background
 - Solutions Architect at AWS (cloud architecture expertise)
 - Ex-professional soccer player

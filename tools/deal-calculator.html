@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wholesale Deal Calculator</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --accent: #38bdf8;
+    --good: #22c55e;
+    --bad: #ef4444;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --border: #334155;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 24px;
+    line-height: 1.5;
+  }
+  .wrap { max-width: 640px; margin: 0 auto; }
+  h1 { font-size: 1.5rem; margin: 0 0 4px; }
+  .sub { color: var(--muted); margin: 0 0 24px; font-size: 0.9rem; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  label { display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 6px; }
+  .field { margin-bottom: 16px; }
+  input[type=number] {
+    width: 100%;
+    padding: 10px 12px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 1rem;
+  }
+  input:focus { outline: none; border-color: var(--accent); }
+  .row { display: flex; gap: 12px; }
+  .row .field { flex: 1; }
+  .result-line {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .result-line:last-child { border-bottom: none; }
+  .result-line .lbl { color: var(--muted); }
+  .result-line .val { font-weight: 600; }
+  .big {
+    font-size: 1.6rem;
+    color: var(--accent);
+  }
+  .hint { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
+  .slider-val { color: var(--accent); font-weight: 600; }
+  input[type=range] { width: 100%; accent-color: var(--accent); }
+  .verdict { font-weight: 700; }
+  .verdict.go { color: var(--good); }
+  .verdict.no { color: var(--bad); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Wholesale Deal Calculator</h1>
+  <p class="sub">70% rule MAO calculator. Plug in the numbers, get your max offer.</p>
+
+  <div class="card">
+    <div class="field">
+      <label for="arv">After Repair Value (ARV)</label>
+      <input type="number" id="arv" placeholder="e.g. 350000" />
+      <div class="hint">What the home is worth fully renovated, based on comps.</div>
+    </div>
+
+    <div class="field">
+      <label for="repairs">Estimated Repair Costs</label>
+      <input type="number" id="repairs" placeholder="e.g. 45000" />
+    </div>
+
+    <div class="field">
+      <label for="fee">Your Desired Assignment Fee</label>
+      <input type="number" id="fee" placeholder="e.g. 10000" />
+      <div class="hint">Your profit on the deal.</div>
+    </div>
+
+    <div class="field">
+      <label>Discount Percentage: <span class="slider-val" id="pctLabel">70%</span></label>
+      <input type="range" id="pct" min="60" max="80" value="70" step="1" />
+      <div class="hint">70% is standard. Lower (65%) in hot markets, higher (75%) in slow ones.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="result-line">
+      <span class="lbl">ARV x <span id="pctShow">70</span>%</span>
+      <span class="val" id="arvPct">$0</span>
+    </div>
+    <div class="result-line">
+      <span class="lbl">Less repair costs</span>
+      <span class="val" id="lessRepairs">$0</span>
+    </div>
+    <div class="result-line">
+      <span class="lbl">Less your assignment fee</span>
+      <span class="val" id="lessFee">$0</span>
+    </div>
+    <div class="result-line">
+      <span class="lbl big">Max Allowable Offer (MAO)</span>
+      <span class="val big" id="mao">$0</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="field">
+      <label for="asking">Seller's Asking Price (optional)</label>
+      <input type="number" id="asking" placeholder="e.g. 200000" />
+    </div>
+    <div class="result-line">
+      <span class="lbl">Verdict</span>
+      <span class="val verdict" id="verdict">Enter numbers above</span>
+    </div>
+    <div class="result-line">
+      <span class="lbl">Spread vs your MAO</span>
+      <span class="val" id="spread">--</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  const fmt = n => isFinite(n) ? '$' + Math.round(n).toLocaleString() : '$0';
+  const ids = ['arv','repairs','fee','pct','asking'];
+  ids.forEach(id => document.getElementById(id).addEventListener('input', calc));
+
+  function calc() {
+    const arv = parseFloat(document.getElementById('arv').value) || 0;
+    const repairs = parseFloat(document.getElementById('repairs').value) || 0;
+    const fee = parseFloat(document.getElementById('fee').value) || 0;
+    const pct = parseFloat(document.getElementById('pct').value) || 70;
+    const asking = parseFloat(document.getElementById('asking').value) || 0;
+
+    document.getElementById('pctLabel').textContent = pct + '%';
+    document.getElementById('pctShow').textContent = pct;
+
+    const arvPct = arv * (pct / 100);
+    const mao = arvPct - repairs - fee;
+
+    document.getElementById('arvPct').textContent = fmt(arvPct);
+    document.getElementById('lessRepairs').textContent = '-' + fmt(repairs);
+    document.getElementById('lessFee').textContent = '-' + fmt(fee);
+    document.getElementById('mao').textContent = fmt(mao);
+
+    const verdictEl = document.getElementById('verdict');
+    const spreadEl = document.getElementById('spread');
+    if (asking > 0 && arv > 0) {
+      const spread = mao - asking;
+      spreadEl.textContent = (spread >= 0 ? '+' : '') + fmt(spread);
+      if (spread >= 0) {
+        verdictEl.textContent = 'GOOD DEAL - offer at or below MAO';
+        verdictEl.className = 'val verdict go';
+      } else {
+        verdictEl.textContent = 'TOO HIGH - asking exceeds your MAO';
+        verdictEl.className = 'val verdict no';
+      }
+    } else {
+      verdictEl.textContent = 'Enter asking price';
+      verdictEl.className = 'val verdict';
+      spreadEl.textContent = '--';
+    }
+  }
+  calc();
+</script>
+</body>
+</html>

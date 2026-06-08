@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wholesale Lead Tracker</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --accent: #38bdf8;
+    --good: #22c55e;
+    --warn: #f59e0b;
+    --bad: #ef4444;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --border: #334155;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 24px;
+    line-height: 1.5;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  h1 { font-size: 1.5rem; margin: 0 0 4px; }
+  .sub { color: var(--muted); margin: 0 0 20px; font-size: 0.9rem; }
+  .bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  button {
+    background: var(--accent);
+    color: #04293a;
+    border: none;
+    padding: 9px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  button.ghost {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  button:hover { opacity: 0.9; }
+  .stats { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+  .stat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    flex: 1;
+    min-width: 110px;
+  }
+  .stat .num { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+  .stat .lbl { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; }
+  table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 10px; overflow: hidden; }
+  th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); font-size: 0.88rem; }
+  th { color: var(--muted); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; }
+  tr:last-child td { border-bottom: none; }
+  select, input[type=text] {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    padding: 6px 8px;
+    font-size: 0.85rem;
+    width: 100%;
+  }
+  .badge { padding: 3px 8px; border-radius: 999px; font-size: 0.72rem; font-weight: 600; }
+  .del { color: var(--bad); cursor: pointer; background: none; border: none; font-size: 1.1rem; padding: 0; }
+  .empty { text-align: center; color: var(--muted); padding: 40px; }
+  dialog {
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    max-width: 480px;
+    width: 90%;
+  }
+  dialog::backdrop { background: rgba(0,0,0,0.6); }
+  .field { margin-bottom: 14px; }
+  .field label { display: block; font-size: 0.8rem; color: var(--muted); margin-bottom: 5px; }
+  dialog input, dialog select, dialog textarea {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    padding: 9px 11px;
+    font-size: 0.95rem;
+    font-family: inherit;
+  }
+  .dlg-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 18px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Wholesale Lead Tracker</h1>
+  <p class="sub">Your deal pipeline. Saved automatically in this browser. Export to back up.</p>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="bar">
+    <button onclick="openDialog()">+ Add Lead</button>
+    <button class="ghost" onclick="exportData()">Export JSON</button>
+    <button class="ghost" onclick="document.getElementById('importFile').click()">Import JSON</button>
+    <button class="ghost" onclick="exportCSV()">Export CSV</button>
+    <input type="file" id="importFile" accept=".json" style="display:none" onchange="importData(event)" />
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Address / Name</th>
+        <th>Phone</th>
+        <th>Source</th>
+        <th>Stage</th>
+        <th>Est. Profit</th>
+        <th>Notes</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="rows"></tbody>
+  </table>
+  <div class="empty" id="empty" style="display:none">No leads yet. Click "+ Add Lead" to start your pipeline.</div>
+</div>
+
+<dialog id="dlg">
+  <h2 style="margin-top:0">Add Lead</h2>
+  <div class="field"><label>Address / Seller Name</label><input id="f_name" /></div>
+  <div class="field"><label>Phone</label><input id="f_phone" /></div>
+  <div class="field">
+    <label>Source</label>
+    <select id="f_source">
+      <option>Probate</option>
+      <option>Driving for Dollars</option>
+      <option>PropStream</option>
+      <option>Direct Mail</option>
+      <option>Cold Call</option>
+      <option>Referral</option>
+      <option>Other</option>
+    </select>
+  </div>
+  <div class="field">
+    <label>Stage</label>
+    <select id="f_stage">
+      <option>New Lead</option>
+      <option>Contacted</option>
+      <option>Appointment Set</option>
+      <option>Offer Made</option>
+      <option>Under Contract</option>
+      <option>Assigned / Closed</option>
+      <option>Dead</option>
+    </select>
+  </div>
+  <div class="field"><label>Estimated Profit ($)</label><input id="f_profit" type="number" /></div>
+  <div class="field"><label>Notes</label><textarea id="f_notes" rows="3"></textarea></div>
+  <div class="dlg-actions">
+    <button class="ghost" onclick="document.getElementById('dlg').close()">Cancel</button>
+    <button onclick="saveLead()">Save</button>
+  </div>
+</dialog>
+
+<script>
+  const KEY = 'wholesale_leads_v1';
+  const STAGES = ['New Lead','Contacted','Appointment Set','Offer Made','Under Contract','Assigned / Closed','Dead'];
+  const STAGE_COLOR = {
+    'New Lead':'#64748b','Contacted':'#38bdf8','Appointment Set':'#a78bfa',
+    'Offer Made':'#f59e0b','Under Contract':'#22c55e','Assigned / Closed':'#16a34a','Dead':'#ef4444'
+  };
+  let leads = load();
+
+  function load() {
+    try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+    catch { return []; }
+  }
+  function save() { localStorage.setItem(KEY, JSON.stringify(leads)); render(); }
+
+  function openDialog() {
+    ['f_name','f_phone','f_profit','f_notes'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('f_source').selectedIndex = 0;
+    document.getElementById('f_stage').selectedIndex = 0;
+    document.getElementById('dlg').showModal();
+  }
+
+  function saveLead() {
+    const name = document.getElementById('f_name').value.trim();
+    if (!name) { alert('Enter an address or name'); return; }
+    leads.push({
+      id: Date.now(),
+      name,
+      phone: document.getElementById('f_phone').value.trim(),
+      source: document.getElementById('f_source').value,
+      stage: document.getElementById('f_stage').value,
+      profit: parseFloat(document.getElementById('f_profit').value) || 0,
+      notes: document.getElementById('f_notes').value.trim()
+    });
+    document.getElementById('dlg').close();
+    save();
+  }
+
+  function updateField(id, field, value) {
+    const lead = leads.find(l => l.id === id);
+    if (lead) { lead[field] = field === 'profit' ? (parseFloat(value)||0) : value; save(); }
+  }
+
+  function delLead(id) {
+    if (confirm('Delete this lead?')) { leads = leads.filter(l => l.id !== id); save(); }
+  }
+
+  function render() {
+    const rows = document.getElementById('rows');
+    const empty = document.getElementById('empty');
+    rows.innerHTML = '';
+    empty.style.display = leads.length ? 'none' : 'block';
+
+    leads.forEach(l => {
+      const tr = document.createElement('tr');
+      const stageOptions = STAGES.map(s => `<option ${s===l.stage?'selected':''}>${s}</option>`).join('');
+      tr.innerHTML = `
+        <td>${esc(l.name)}</td>
+        <td>${esc(l.phone)}</td>
+        <td>${esc(l.source)}</td>
+        <td><select onchange="updateField(${l.id},'stage',this.value)" style="border-left:3px solid ${STAGE_COLOR[l.stage]||'#64748b'}">${stageOptions}</select></td>
+        <td>$${(l.profit||0).toLocaleString()}</td>
+        <td><input type="text" value="${esc(l.notes)}" onchange="updateField(${l.id},'notes',this.value)" /></td>
+        <td><button class="del" onclick="delLead(${l.id})" title="Delete">&times;</button></td>
+      `;
+      rows.appendChild(tr);
+    });
+    renderStats();
+  }
+
+  function renderStats() {
+    const active = leads.filter(l => l.stage !== 'Dead' && l.stage !== 'Assigned / Closed').length;
+    const contracts = leads.filter(l => l.stage === 'Under Contract').length;
+    const closed = leads.filter(l => l.stage === 'Assigned / Closed').length;
+    const pipeline = leads
+      .filter(l => l.stage !== 'Dead')
+      .reduce((sum,l) => sum + (l.profit||0), 0);
+    document.getElementById('stats').innerHTML = `
+      <div class="stat"><div class="num">${leads.length}</div><div class="lbl">Total Leads</div></div>
+      <div class="stat"><div class="num">${active}</div><div class="lbl">Active</div></div>
+      <div class="stat"><div class="num">${contracts}</div><div class="lbl">Under Contract</div></div>
+      <div class="stat"><div class="num">${closed}</div><div class="lbl">Closed</div></div>
+      <div class="stat"><div class="num">$${pipeline.toLocaleString()}</div><div class="lbl">Pipeline Value</div></div>
+    `;
+  }
+
+  function esc(s) { return (s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+  function exportData() {
+    download('leads-backup.json', JSON.stringify(leads, null, 2));
+  }
+  function exportCSV() {
+    const header = ['Name/Address','Phone','Source','Stage','Profit','Notes'];
+    const lines = leads.map(l => [l.name,l.phone,l.source,l.stage,l.profit,l.notes]
+      .map(v => `"${String(v||'').replace(/"/g,'""')}"`).join(','));
+    download('leads.csv', [header.join(','), ...lines].join('\n'));
+  }
+  function download(filename, text) {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([text], {type:'text/plain'}));
+    a.download = filename;
+    a.click();
+  }
+  function importData(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const data = JSON.parse(reader.result);
+        if (Array.isArray(data)) { leads = data; save(); alert('Imported ' + data.length + ' leads'); }
+        else alert('Invalid file format');
+      } catch { alert('Could not parse file'); }
+    };
+    reader.readAsText(file);
+    e.target.value = '';
+  }
+
+  render();
+</script>
+</body>
+</html>
