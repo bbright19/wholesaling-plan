@@ -1,5 +1,7 @@
 # Real Estate Wholesaling Learning Plan
 
+> **Resuming?** Read **`PROGRESS.md`** first — it tracks current phase, next steps, and decisions.
+
 ## Tools & Templates in this Repo
 - **`tools/deal-calculator.html`** — 70% rule MAO calculator. Open in any browser.
 - **`tools/lead-tracker.html`** — Pipeline tracker, saves to your browser, export to JSON/CSV.
