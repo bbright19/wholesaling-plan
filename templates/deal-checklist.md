@@ -34,6 +34,25 @@
 
 ---
 
+## Protecting Your Deal (Anti-Circumvention)
+
+> Your contract is what you're actually selling. Protect it.
+
+- [ ] **HARD RULE: Never market a property before it's under contract.** Lock the seller FIRST, then talk to buyers. Marketing a deal you don't control = (1) inviting buyers to skip you, and (2) crossing into illegal unlicensed-broker territory.
+- [ ] Don't reveal the exact address to a buyer until they've signed the assignment (or a simple NDA/agreement). Share numbers + neighborhood first.
+- [ ] Use a signed, **attorney-drafted assignable purchase agreement** with a clear assignment clause and a meaningful contract period.
+- [ ] Put **earnest money in escrow** — keeps both seller and buyer committed.
+- [ ] Use your own investor-friendly title company so you control the closing/paperwork.
+- [ ] Keep your assignment fee reasonable — a fair fee removes the temptation to go around you. Greed invites circumvention.
+- [ ] If a seller breaches (tries to sell elsewhere during your contract), you can pursue damages/specific performance and file a **lis pendens** to cloud the title.
+
+### Exclusivity — what your contract actually gives you
+- A **ratified (fully signed) purchase agreement is exclusive**: during the contract period the seller CANNOT legally sell to anyone else.
+- BUT it is a **time-limited right contingent on you performing**. If the contract period expires (or you fail to deliver earnest money / close), the seller is free to sell elsewhere. You don't own the property — you own an exclusive, time-boxed right to buy it.
+- Real-world risk: shady sellers sometimes sign with multiple wholesalers, or wait out your contract. Your defense = tight contract + earnest money + recording/lis pendens if needed.
+
+---
+
 ## Legal Checklist (DC / MD / VA)
 - [ ] Researched wholesale laws in the specific jurisdiction
 - [ ] Real estate attorney reviewed contracts ($200-300, worth it)

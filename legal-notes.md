@@ -54,6 +54,14 @@
 
 ---
 
+## Exclusivity & Anti-Circumvention
+
+- A fully signed (ratified) purchase agreement gives the wholesaler **exclusive rights to buy during the contract period** — the seller cannot legally sell to anyone else during that window.
+- It is a **time-limited right contingent on performance**: if the contract expires or the wholesaler fails to perform (no earnest money, no close), the seller is released and can sell elsewhere. The wholesaler does NOT own the property — only an exclusive, time-boxed right to buy.
+- Seller breach (selling elsewhere mid-contract) → remedies include damages, specific performance, and filing a **lis pendens** to cloud the title.
+- **Hard operating rule:** Never market a property before it is under contract. Lock the seller first, then talk to buyers. Don't reveal the exact address to a buyer until they've signed the assignment/NDA.
+- Keep assignment fees reasonable and use earnest money + your own title company to reduce circumvention risk.
+
 ## Questions for the Attorney
 
 - [ ] Draft/review an **assignable purchase agreement** with MD-compliant disclosure language
