@@ -6,8 +6,8 @@
 
 ## Current Status
 
-- **Current Phase:** Phase 1 — Foundation (Weeks 1-2)
-- **Target Market:** DC / MD / VA area (specific zip codes TBD)
+- **Current Phase:** Phase 1 — Foundation (Weeks 1-2), nearly complete
+- **Target Market:** **Maryland + DC primary** (no volume cap); **Virginia limited** (1-deal/yr cap — see legal-notes.md). Specific zip codes TBD.
 - **Lead Strategy:** Solo wholesaling, targeting probate properties
 - **Income Goal:** $3K+/month extra income, long-term upside
 - **Deals Under Contract:** 0
@@ -19,11 +19,13 @@
 
 ## Next Up (To-Do)
 
-- [ ] Phase 1: Learn core concepts (assignment vs double close, ARV, MAO, 70% rule)
-- [ ] Phase 1: Research DC/MD/VA wholesale laws
-- [ ] Phase 1: Be able to explain the full process without notes
-- [ ] Pick 1-2 target zip codes/neighborhoods
-- [ ] Find a real estate attorney to review contracts
+- [x] Phase 1: Learn core concepts (assignment vs double close, ARV, MAO, 70% rule) — covered
+- [x] Phase 1: Research DC/MD/VA wholesale laws — see `legal-notes.md`
+- [ ] Phase 1: Be able to explain the full process without notes (practice out loud)
+- [ ] Watch 3-5 Wholesaling Inc / Jamil Damji videos
+- [ ] Read "If You Can't Wholesale After This" (Todd Fleming)
+- [ ] Pick 1-2 target zip codes/neighborhoods (lean MD/DC)
+- [ ] Find a real estate attorney — bring the questions in `legal-notes.md`
 - [ ] Identify an investor-friendly title company
 
 ---
@@ -36,6 +38,12 @@
 - `templates/seller-scripts.md` — outreach + objection scripts
 - `templates/buyers-list.md` — cash buyers list template
 - `templates/deal-checklist.md` — lead-to-close + legal checklist
+- `legal-notes.md` — DC/MD/VA wholesaling laws + attorney questions
+
+## Key Strategic Decisions
+
+- **Market priority shift (2026-06-08):** Lead with **Maryland + DC**, not Virginia. VA's HB 917 caps unlicensed wholesalers at 1 assignment per rolling 12 months — incompatible with a monthly-income goal unless licensed or double-closing. See `legal-notes.md`.
+- **Maryland requires written disclosures** (§ 10-715, effective Oct 1, 2025) — contracts must include them.
 
 ## Tech / Infra Decisions
 
@@ -51,3 +59,10 @@
 - Built deal calculator, lead tracker, and template docs (scripts, buyers list, deal checklist).
 - Discussed cloud architecture — decided to stay browser-based for now, revisit after first deal.
 - Created this PROGRESS.md tracker.
+
+
+### 2026-06-08 (session 2)
+- Worked through Phase 1 learning: assignment vs double close, key terms, equitable interest, the 70% rule with a worked MAO example, and the full 5-step process.
+- Researched current DC/MD/VA wholesaling laws — found VA's 1-deal cap (HB 917) and MD's new disclosure law (§ 10-715). Created `legal-notes.md`.
+- Strategy shift: lead with Maryland + DC; treat Virginia as limited/licensed-only.
+- Remaining Phase 1: practice explaining the process out loud; optional videos/book.
