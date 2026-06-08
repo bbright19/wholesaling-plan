@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comp Analyzer / ARV Estimator</title>
+<style>
+  :root {
+    --bg: #0f172a; --card: #1e293b; --accent: #38bdf8; --good: #22c55e;
+    --warn: #f59e0b; --bad: #ef4444; --text: #e2e8f0; --muted: #94a3b8; --border: #334155;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg); color: var(--text); margin: 0; padding: 24px; line-height: 1.5;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; }
+  h1 { font-size: 1.5rem; margin: 0 0 4px; }
+  .sub { color: var(--muted); margin: 0 0 24px; font-size: 0.9rem; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+  h2 { font-size: 1.05rem; margin: 0 0 14px; }
+  label { display: block; font-size: 0.82rem; color: var(--muted); margin-bottom: 5px; }
+  input { width: 100%; padding: 9px 11px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 0.95rem; }
+  input:focus { outline: none; border-color: var(--accent); }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { padding: 8px; text-align: left; }
+  th { font-size: 0.72rem; text-transform: uppercase; color: var(--muted); }
+  td input { padding: 7px 9px; }
+  .ppsf { font-weight: 600; color: var(--accent); white-space: nowrap; }
+  .del { color: var(--bad); cursor: pointer; background: none; border: none; font-size: 1.1rem; }
+  button.add { background: transparent; color: var(--text); border: 1px solid var(--border); padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 0.85rem; }
+  button.add:hover { border-color: var(--accent); }
+  .result-line { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .result-line:last-child { border-bottom: none; }
+  .result-line .lbl { color: var(--muted); }
+  .big { font-size: 1.6rem; color: var(--accent); font-weight: 700; }
+  .hint { font-size: 0.78rem; color: var(--muted); margin-top: 6px; }
+  .flag { font-size: 0.75rem; padding: 2px 7px; border-radius: 999px; margin-left: 6px; }
+  .flag.warn { background: rgba(245,158,11,0.15); color: var(--warn); }
+  .flag.ok { background: rgba(34,197,94,0.15); color: var(--good); }
+  .row2 { display: flex; gap: 14px; }
+  .row2 > div { flex: 1; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Comp Analyzer / ARV Estimator</h1>
+  <p class="sub">Enter recent SOLD comps. The tool calculates $/sqft, averages them, and estimates your subject's ARV. Use the 70% rule with the result in the Deal Calculator.</p>
+
+  <div class="card">
+    <h2>Subject Property</h2>
+    <div class="row2">
+      <div>
+        <label>Subject Address (optional)</label>
+        <input id="subjAddr" placeholder="123 Main St" />
+      </div>
+      <div>
+        <label>Subject Square Footage</label>
+        <input id="subjSqft" type="number" placeholder="1900" oninput="calc()" />
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Sold Comps</h2>
+    <table>
+      <thead>
+        <tr><th>Address</th><th>Sold Price</th><th>Sq Ft</th><th>$/sqft</th><th>Use?</th><th></th></tr>
+      </thead>
+      <tbody id="comps"></tbody>
+    </table>
+    <div style="margin-top:12px"><button class="add" onclick="addRow()">+ Add Comp</button></div>
+    <div class="hint">Tip: use comps within 0.5 mi, sold in the last 3-6 months, similar sqft (within ~20%), same property type, renovated condition. Uncheck outliers to exclude them.</div>
+  </div>
+
+  <div class="card">
+    <h2>Result</h2>
+    <div class="result-line"><span class="lbl">Comps used</span><span id="rCount">0</span></div>
+    <div class="result-line"><span class="lbl">Average $/sqft</span><span id="rAvg">$0</span></div>
+    <div class="result-line"><span class="lbl">$/sqft range (low - high)</span><span id="rRange">--</span></div>
+    <div class="result-line"><span class="lbl big">Estimated ARV</span><span class="big" id="rArv">$0</span></div>
+    <div class="hint" id="spreadNote"></div>
+  </div>
+</div>
+
+<script>
+  let rows = [];
+  function addRow(addr='', price='', sqft='') {
+    rows.push({ id: Date.now()+Math.random(), addr, price, sqft, use: true });
+    render();
+  }
+  function delRow(id) { rows = rows.filter(r => r.id !== id); render(); }
+  function update(id, field, val) {
+    const r = rows.find(x => x.id === id);
+    if (!r) return;
+    r[field] = val;
+    calc();
+  }
+  function ppsf(r) {
+    const p = parseFloat(r.price), s = parseFloat(r.sqft);
+    return (p > 0 && s > 0) ? p / s : 0;
+  }
+  const fmt = n => isFinite(n) && n ? '$' + Math.round(n).toLocaleString() : '$0';
+  const fmt2 = n => isFinite(n) && n ? '$' + n.toFixed(0) : '$0';
+
+  function render() {
+    const tb = document.getElementById('comps');
+    tb.innerHTML = '';
+    rows.forEach(r => {
+      const tr = document.createElement('tr');
+      const idArg = JSON.stringify(r.id);
+      tr.innerHTML = `
+        <td><input value="${r.addr}" oninput="update(${idArg},'addr',this.value)" placeholder="Comp address"/></td>
+        <td><input type="number" value="${r.price}" oninput="update(${idArg},'price',this.value)" placeholder="420000"/></td>
+        <td><input type="number" value="${r.sqft}" oninput="update(${idArg},'sqft',this.value)" placeholder="2000"/></td>
+        <td class="ppsf" id="ppsf_${r.id}">$0</td>
+        <td style="text-align:center"><input type="checkbox" ${r.use?'checked':''} style="width:auto" onchange="update(${idArg},'use',this.checked)"/></td>
+        <td><button class="del" onclick="delRow(${idArg})">&times;</button></td>
+      `;
+      tb.appendChild(tr);
+    });
+    calc();
+  }
+
+  function calc() {
+    rows.forEach(r => {
+      const el = document.getElementById('ppsf_' + r.id);
+      if (el) el.textContent = fmt2(ppsf(r));
+    });
+    const used = rows.filter(r => r.use && ppsf(r) > 0);
+    const vals = used.map(ppsf);
+    const count = vals.length;
+    const avg = count ? vals.reduce((a,b)=>a+b,0)/count : 0;
+    const lo = count ? Math.min(...vals) : 0;
+    const hi = count ? Math.max(...vals) : 0;
+    const subjSqft = parseFloat(document.getElementById('subjSqft').value) || 0;
+    const arv = avg * subjSqft;
+
+    document.getElementById('rCount').textContent = count;
+    document.getElementById('rAvg').textContent = fmt2(avg) + '/sqft';
+    document.getElementById('rRange').textContent = count ? (fmt2(lo) + ' - ' + fmt2(hi) + '/sqft') : '--';
+    document.getElementById('rArv').textContent = fmt(arv);
+
+    const note = document.getElementById('spreadNote');
+    if (count && count < 3) {
+      note.innerHTML = '<span class="flag warn">Add more comps</span> Aim for 3-5 solid comps for a reliable ARV.';
+    } else if (count >= 3 && hi && lo && (hi-lo)/avg > 0.25) {
+      note.innerHTML = '<span class="flag warn">Wide spread</span> Your $/sqft varies a lot &mdash; check for outliers or mismatched comps and uncheck them.';
+    } else if (count >= 3) {
+      note.innerHTML = '<span class="flag ok">Looks solid</span> Tight comp spread. Plug this ARV into the Deal Calculator.';
+    } else {
+      note.textContent = '';
+    }
+  }
+
+  addRow(); addRow(); addRow();
+</script>
+</body>
+</html>

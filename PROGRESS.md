@@ -6,7 +6,7 @@
 
 ## Current Status
 
-- **Current Phase:** Phase 1 — Foundation (Weeks 1-2), nearly complete
+- **Current Phase:** Phase 2 — Know Your Market (Weeks 3-4)
 - **Target Market:** **Maryland + DC primary** (no volume cap); **Virginia limited** (1-deal/yr cap — see legal-notes.md). Specific zip codes TBD.
 - **Lead Strategy:** Solo wholesaling, targeting probate properties
 - **Income Goal:** $3K+/month extra income, long-term upside
@@ -22,6 +22,9 @@
 - [x] Phase 1: Learn core concepts (assignment vs double close, ARV, MAO, 70% rule) — covered
 - [x] Phase 1: Research DC/MD/VA wholesale laws — see `legal-notes.md`
 - [ ] Phase 1: Be able to explain the full process without notes (practice out loud)
+- [ ] Phase 2: Pick 1-2 target zip codes/neighborhoods (lean MD/DC)
+- [ ] Phase 2: Run comps + estimate ARV on 10 recent sales (milestone)
+- [ ] Phase 2: Drive the target area, note distressed properties
 - [ ] Watch 3-5 Wholesaling Inc / Jamil Damji videos
 - [ ] Read "If You Can't Wholesale After This" (Todd Fleming)
 - [ ] Pick 1-2 target zip codes/neighborhoods (lean MD/DC)
@@ -33,6 +36,7 @@
 ## Tools Built
 
 - `tools/deal-calculator.html` — 70% rule MAO calculator
+- `tools/comp-analyzer.html` — comp/ARV estimator ($/sqft averaging across sold comps)
 - `tools/lead-tracker.html` — pipeline tracker (browser localStorage, JSON/CSV export)
 - `tools/index.html` — landing page linking tools
 - `templates/seller-scripts.md` — outreach + objection scripts
@@ -66,3 +70,10 @@
 - Researched current DC/MD/VA wholesaling laws — found VA's 1-deal cap (HB 917) and MD's new disclosure law (§ 10-715). Created `legal-notes.md`.
 - Strategy shift: lead with Maryland + DC; treat Virginia as limited/licensed-only.
 - Remaining Phase 1: practice explaining the process out loud; optional videos/book.
+
+
+### 2026-06-08 (session 3)
+- Started Phase 2 (Know Your Market). Covered: retail vs investor price, what ARV is, the comp method ($/sqft from 3-5 tight sold comps), rough repair estimating by condition, local property types, and driving the area.
+- Discussed why wholesalers use free comps instead of paid appraisals (speed, volume economics, ARV vs as-is, buyer does final diligence).
+- Built `tools/comp-analyzer.html` — enter sold comps, auto-calc $/sqft, average, and estimate ARV; flags wide spreads/outliers.
+- Next: practice on 10 real sales in target MD/DC area to hit the Phase 2 milestone.

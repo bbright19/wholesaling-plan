@@ -4,6 +4,7 @@
 
 ## Tools & Templates in this Repo
 - **`tools/deal-calculator.html`** — 70% rule MAO calculator. Open in any browser.
+- **`tools/comp-analyzer.html`** — enter sold comps, get average $/sqft and estimated ARV.
 - **`tools/lead-tracker.html`** — Pipeline tracker, saves to your browser, export to JSON/CSV.
 - **`tools/index.html`** — Landing page linking both tools.
 - **`templates/seller-scripts.md`** — Cold outreach, discovery questions, objection handling.
