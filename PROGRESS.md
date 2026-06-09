@@ -17,7 +17,7 @@
 ## Current Status
 
 - **Current Phase:** Phase 2 — Know Your Market (Weeks 3-4)
-- **Target Market:** **Maryland + DC primary** (no volume cap); **Virginia limited** (1-deal/yr cap — see legal-notes.md). Specific zip codes TBD.
+- **Target Market:** **PG County, MD** — 20748 (Temple Hills/Hillcrest Heights/Marlow Heights) + 20745 (Glassmanor/older Oxon Hill). Older modest stock near MGM National Harbor, avoiding upscale waterfront. ~$250K-$400K band, close to home (22315). VA stays limited (1-deal cap).
 - **Lead Strategy:** Solo wholesaling, targeting probate properties
 - **Income Goal:** $3K+/month extra income, long-term upside
 - **Deals Under Contract:** 0
@@ -32,7 +32,7 @@
 - [x] Phase 1: Learn core concepts (assignment vs double close, ARV, MAO, 70% rule) — covered
 - [x] Phase 1: Research DC/MD/VA wholesale laws — see `legal-notes.md`
 - [ ] Phase 1: Be able to explain the full process without notes (practice out loud)
-- [ ] Phase 2: Pick 1-2 target zip codes/neighborhoods (lean MD/DC)
+- [x] Phase 2: Pick target area — 20748 + 20745 (older pockets near MGM, PG County MD)
 - [ ] Phase 2: Run comps + estimate ARV on 10 recent sales (milestone)
 - [ ] Phase 2: Drive the target area, note distressed properties
 - [ ] Watch 3-5 Wholesaling Inc / Jamil Damji videos

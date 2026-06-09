@@ -4,7 +4,7 @@
 > Use `tools/comp-analyzer.html` to crunch the numbers, then log the result here.
 > Pull SOLD comps only (Zillow/Redfin -> filter "Sold"). Aim for: within 0.5 mi, sold last 3-6 months, similar sqft (+/-20%), same property type, renovated condition.
 
-**Target Area:** _______________ (zip / neighborhood)
+**Target Area:** 20748 (Temple Hills / Hillcrest Heights / Marlow Heights) + 20745 (Glassmanor / older Oxon Hill). Older, modest pockets near MGM National Harbor — avoiding the upscale waterfront. Price band ~$250K-$400K. Close to home base (Kingstowne, 22315).
 
 | # | Subject Address | Beds/Bath | Sq Ft | # Comps Used | Avg $/sqft | Estimated ARV | Notes (condition, outliers) |
 |---|-----------------|-----------|-------|--------------|------------|---------------|------------------------------|
