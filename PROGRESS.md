@@ -4,13 +4,15 @@
 
 ---
 
-## ▶️ START HERE TOMORROW — Next 3 Steps (Phase 2)
+## ▶️ START HERE TOMORROW — Next Steps (Phase 2)
 
-1. **Pick your target area** — choose 1-2 MD/DC zip codes or neighborhoods to focus on.
-2. **Run comps on 10 recent sales** — use `tools/comp-analyzer.html`; pull sold comps from Zillow/Redfin, calc $/sqft, estimate ARV. This is the Phase 2 milestone.
-3. **Drive the target area** — note distressed properties (overgrown yards, boarded windows, code notices, full mailboxes) and where the good/rough block lines are.
+1. **Tighten to a real comp set** — in `comp-analyzer.html`, pick a representative subject sqft (e.g. a 1,400–1,800 sqft SFR you'd actually chase), click **"Select similar (±20% sqft)"**, and uncheck the renovated/condition outliers. Goal: get the $/sqft range to tighten from $100–$452 down to a believable band, and note the **renovated** $/sqft (that's your ARV basis).
+2. **Drive the target area** — note distressed properties (overgrown yards, boarded windows, code notices, full mailboxes) and where the good/rough block lines are. Log them in `comps-log.md` (Driving for Dollars table).
+3. **Ask 1–2 cash buyers for their per-sqft rehab budgets** in 20748/20745 — start the "buyer repair cheat sheet" so your MAO math uses real (conservative) repair numbers.
 
-*Resume cue: "Pull up my wholesaling repo, read PROGRESS.md, let's do the next 3 steps."*
+*Resume cue: "Pull up my wholesaling repo, read PROGRESS.md, let's do the next steps."*
+
+**Baseline locked (2026-06-10):** 20748 SFR sold ~**$225/sqft median** (avg $243, range $100–$452 across 42 comps). See `market-research/comps-log.md`.
 
 ---
 
@@ -33,7 +35,7 @@
 - [x] Phase 1: Research DC/MD/VA wholesale laws — see `legal-notes.md`
 - [ ] Phase 1: Be able to explain the full process without notes (practice out loud)
 - [x] Phase 2: Pick target area — 20748 + 20745 (older pockets near MGM, PG County MD)
-- [ ] Phase 2: Run comps + estimate ARV on 10 recent sales (milestone)
+- [~] Phase 2: Run comps + estimate ARV (milestone) — **market baseline done** (20748 SFR ~$225/sqft median, 42 comps). Next: tighten to a similar-sqft comp set + isolate renovated $/sqft for true ARV.
 - [ ] Phase 2: Drive the target area, note distressed properties
 - [ ] Watch 3-5 Wholesaling Inc / Jamil Damji videos
 - [ ] Read "If You Can't Wholesale After This" (Todd Fleming)
@@ -113,3 +115,15 @@
 - Upgraded `tools/comp-analyzer.html` to import the Redfin CSV directly (drag/drop or click). Parses Address/Price/Square Feet/$ per sqft/Sold Date/Beds/Baths/Property Type, handles quoted addresses with commas, sorts newest-sold first, and skips rows missing price or sqft.
 - Imported comps start UNCHECKED so 300 rows don't pollute the average. Added helpers: "Select similar (±20% sqft)", Check all, Uncheck all, Clear all. Result now shows both average and median $/sqft (median is more robust when the spread is wide).
 - Next: actually run the Phase 2 milestone — import a real 20748/20745 sold CSV, pick a subject, select 3-5 tight comps, and lock an ARV.
+
+
+
+### 2026-06-10 (comp-analyzer + first market baseline)
+- Confirmed Redfin native CSV export works ("Download All" at bottom of sold results). User downloaded a real 20748 sold CSV.
+- Shipped two comp-analyzer upgrades (both merged to main):
+  - PR #1: Redfin CSV import (drag/drop), parses address/price/sqft/$ per sqft/sold date/beds/baths/type, robust quoted-comma parsing, avg + median $/sqft.
+  - PR #2: On import, auto-check ONLY single-family comps with complete data; Townhouses, Condos, Land, and rows with any blank field stay unchecked (matches SFR-focus strategy + skips junk data).
+- Product focus decision: **lead with SFR**, townhomes only opportunistically (low/no HOA + strong spread). Rationale: matches probate stock, wider buyer pool, no HOA closing friction.
+- **First market baseline (20748 SFR):** 42 sold comps → median **$225/sqft**, avg $243, range $100–$452. Logged in `market-research/comps-log.md`. Takeaways: median is the trustworthy number; wide spread is mixed condition/size; $/sqft inversely tracks size; median ≠ ARV (ARV = renovated value, lean to upper cluster).
+- Noted: image attachments in chat don't always reach Kiro — fall back to pasting numbers/text.
+- Next session: tighten to a similar-sqft comp set, isolate renovated $/sqft (true ARV basis), start driving-for-dollars + buyer rehab-budget asks.
