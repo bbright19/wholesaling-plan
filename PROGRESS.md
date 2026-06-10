@@ -47,6 +47,7 @@
 - `tools/deal-calculator.html` — 70% rule MAO calculator
 - `tools/comp-analyzer.html` — comp/ARV estimator ($/sqft averaging across sold comps)
 - `tools/lead-tracker.html` — pipeline tracker (browser localStorage, JSON/CSV export)
+- `tools/weekly-scorecard.html` — weekly leading-indicator tracker (contacts/convos/offers) with trend + "is it working?" signal
 - `tools/index.html` — landing page linking tools
 - `templates/seller-scripts.md` — outreach + objection scripts
 - `templates/buyers-list.md` — cash buyers list template
@@ -91,3 +92,9 @@
 ### 2026-06-08 (session 3 cont.)
 - Covered deal protection: anti-circumvention rules and contract exclusivity (ratified contract = time-limited exclusive right to buy, contingent on performance). Saved to deal-checklist.md and legal-notes.md.
 - Paused here. Saved next 3 Phase 2 steps for tomorrow (see START HERE TOMORROW block).
+
+
+### 2026-06-10
+- Honest gut-check convo (prompted by cousin/RE agent): wholesaling is relationship- and consistency-driven, not part-time/on-off friendly; dropshipping considered but rejected (same consistency demands, no durable asset, no local moat). Decision: stick with wholesaling IF consistent.
+- Key self-insight from user: "I can be consistent if the process is working." Reframed "working" = leading indicators (activity), not lagging (money). First deal can take 3-6+ months, so we need weekly proof-of-progress to sustain consistency.
+- Built `tools/weekly-scorecard.html` — logs weekly leads/contacts/conversations/offers/contracts, shows trend chart + week-over-week deltas + an "is it working?" signal based on activity. This is the feedback loop that fixes the consistency risk.
