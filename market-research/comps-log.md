@@ -30,3 +30,14 @@
 | | | overgrown / boarded / code notice / full mailbox | | |
 | | | | | |
 | | | | | |
+
+
+## Repair Estimation Principle (from cousin / RE agent)
+
+**Estimate repairs the way your BUYER will calculate them — not your own optimistic number.**
+
+- Lowballing repairs inflates your MAO and helps you lock a seller, but the deal won't sell because the buyer runs their own (higher) repair number. Result: dead deal, burned seller, lost earnest money.
+- Buyers estimate to their EXIT standard: flippers budget for retail finishes (higher); landlords/BRRRR budget rental-grade (lower). Know your buyer's strategy.
+- Buyers pad with 10-20% contingency for hidden issues. So should you.
+- Buyers think total project cost (purchase + repairs + holding + buy/sell closing + financing + profit). The 70% rule compresses the holding/closing/profit into the 30% haircut.
+- ACTION: Ask your cash buyers directly for their per-sqft rehab budgets and finish standards in 20748/20745. Build a "buyer repair cheat sheet" and apply the most conservative (highest) relevant number when calculating MAO. This ensures every deal you lock is actually sellable.
