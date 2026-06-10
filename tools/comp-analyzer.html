@@ -67,7 +67,7 @@
       <input type="file" id="file" accept=".csv,text/csv" style="display:none" />
     </div>
     <div id="importStatus"></div>
-    <div class="hint">On Redfin: filter to <strong>Sold</strong> &middot; last 3 months &middot; your area, scroll to the bottom of the results and click <strong>"(Download All)"</strong>. Imported comps start <strong>unchecked</strong> &mdash; enter your subject's sqft, then click "Select similar" to auto-pick comparable sizes.</div>
+    <div class="hint">On Redfin: filter to <strong>Sold</strong> &middot; last 3 months &middot; your area, scroll to the bottom of the results and click <strong>"(Download All)"</strong>. On import, comps are <strong>auto-checked</strong> only if they're single-family (not Townhouse/Condo) and have no blank fields &mdash; review and uncheck any outliers.</div>
   </div>
 
   <div class="card">
@@ -303,13 +303,15 @@
       const beds = ci.beds > -1 ? (r[ci.beds]||'').trim() : '';
       const baths = ci.baths > -1 ? (r[ci.baths]||'').trim() : '';
       const bedbath = (beds || baths) ? `${beds||'?'}/${baths||'?'}` : '';
+      const sold = ci.sold > -1 ? (r[ci.sold]||'').trim() : '';
+      const ptype = ci.ptype > -1 ? typeShort(r[ci.ptype]) : '';
       if (!(price > 0) || !(sqft > 0)) skipped++;
+      // Auto-check by default: not a Townhouse/Condo/Land AND no blank key fields
+      const complete = price > 0 && sqft > 0 && !!beds && !!baths && !!sold && !!addr;
+      const wanted = ptype !== 'TH' && ptype !== 'Condo' && ptype !== 'Land';
       imported.push({
-        addr, price, sqft,
-        sold: ci.sold > -1 ? (r[ci.sold]||'').trim() : '',
-        bedbath,
-        ptype: ci.ptype > -1 ? typeShort(r[ci.ptype]) : '',
-        use: false
+        addr, price, sqft, sold, bedbath, ptype,
+        use: complete && wanted
       });
     }
     if (!imported.length) { setStatus('bad', 'No usable rows found in that file.'); return; }
@@ -323,8 +325,10 @@
     render();
 
     const usable = imported.filter(r => r.price > 0 && r.sqft > 0).length;
-    setStatus('ok', `Imported ${imported.length} comps (${usable} with price + sqft). ` +
-      `Enter your subject sqft and click <strong>"Select similar"</strong> to auto-pick the closest matches.`);
+    const checked = imported.filter(r => r.use).length;
+    setStatus('ok', `Imported ${imported.length} comps. ` +
+      `<strong>${checked} auto-selected</strong> (single-family/other with complete data; Townhouses, Condos, Land, and rows with blank fields left unchecked). ` +
+      `Review the checkmarks and uncheck any outliers.`);
   }
 
   function setStatus(kind, html) {
