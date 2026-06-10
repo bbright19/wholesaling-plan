@@ -19,7 +19,17 @@
 | 9 | | | | | | | |
 | 10 | | | | | | | |
 
+## Market Baseline Scans
+> Broad $/sqft reads across many sold comps to learn the market (not valuing one house). Use median as the central number.
+
+| Date | Area | Type | # Comps | Median $/sqft | Avg $/sqft | Range (low–high) | Notes |
+|------|------|------|---------|---------------|------------|------------------|-------|
+| 2026-06-10 | 20748 | SFR (sold) | 42 | **$225** | $243 | $100 – $452 | First baseline. Wide spread = mixed condition + size (small homes inflate $/sqft, distressed at low end). Avg > median → high outliers. Use ~$225/sqft as the typical-condition baseline. |
+
 ## What I'm learning as I go
+- **20748 SFR baseline (2026-06-10):** typical sold ~**$225/sqft** (median of 42), avg $243, range $100–$452. Median is the reliable number; avg is skewed up by renovated/small-home outliers.
+- **$/sqft moves opposite to size** — small homes show high $/sqft, big homes low. Always tighten comps to similar sqft (±20%) before trusting a number.
+- **Median ≠ ARV.** ARV = fully-renovated value, so lean toward the upper (renovated) cluster of comps when valuing a real deal — not the all-conditions median.
 - (e.g. "$/sqft is higher north of Main St", "renovated comps run ~$215/sqft", "townhomes move fast under $400k")
 
 ## Driving for Dollars Log (Step 3)
