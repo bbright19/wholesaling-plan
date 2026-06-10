@@ -45,7 +45,7 @@
 ## Tools Built
 
 - `tools/deal-calculator.html` — 70% rule MAO calculator
-- `tools/comp-analyzer.html` — comp/ARV estimator ($/sqft averaging across sold comps)
+- `tools/comp-analyzer.html` — comp/ARV estimator ($/sqft averaging across sold comps); **imports Redfin "Download All" CSV** (drag/drop), shows sold date + beds/baths + type per comp, auto-selects comps within ±20% of subject sqft, and reports avg + median $/sqft
 - `tools/lead-tracker.html` — pipeline tracker (browser localStorage, JSON/CSV export)
 - `tools/weekly-scorecard.html` — weekly leading-indicator tracker (contacts/convos/offers) with trend + "is it working?" signal
 - `tools/index.html` — landing page linking tools
@@ -105,3 +105,11 @@
 - DECISION: User chose to go SOLO. Rationale: if solo works, upside is huge — keeps 100% of fee (~$10K avg vs ~$5K split), owns full acquisition + disposition skillset, no partner risk, builds the real long-term business.
 - Solo approach within a full-time AWS job = hardest path; mitigate with async-friendly lead gen (direct mail + weekend driving for dollars + probate records), evening/weekend seller calls via a separate Google Voice line, NO cold mass-SMS (legal risk), and the weekly scorecard to confirm the process is working through the pre-money stretch.
 - Confirmed market: base 22315 (Kingstowne), target PG County MD 20748 + 20745. Back to Phase 2 Step 2 (run comps on 10 sales).
+
+
+
+### 2026-06-10 (comp-analyzer upgrade)
+- Confirmed Redfin's native CSV export works: filter to Sold + last 3 months + area, scroll to bottom of results, click "(Download All)". User successfully downloaded a CSV.
+- Upgraded `tools/comp-analyzer.html` to import the Redfin CSV directly (drag/drop or click). Parses Address/Price/Square Feet/$ per sqft/Sold Date/Beds/Baths/Property Type, handles quoted addresses with commas, sorts newest-sold first, and skips rows missing price or sqft.
+- Imported comps start UNCHECKED so 300 rows don't pollute the average. Added helpers: "Select similar (±20% sqft)", Check all, Uncheck all, Clear all. Result now shows both average and median $/sqft (median is more robust when the spread is wide).
+- Next: actually run the Phase 2 milestone — import a real 20748/20745 sold CSV, pick a subject, select 3-5 tight comps, and lock an ARV.
