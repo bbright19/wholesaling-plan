@@ -98,3 +98,10 @@
 - Honest gut-check convo (prompted by cousin/RE agent): wholesaling is relationship- and consistency-driven, not part-time/on-off friendly; dropshipping considered but rejected (same consistency demands, no durable asset, no local moat). Decision: stick with wholesaling IF consistent.
 - Key self-insight from user: "I can be consistent if the process is working." Reframed "working" = leading indicators (activity), not lagging (money). First deal can take 3-6+ months, so we need weekly proof-of-progress to sustain consistency.
 - Built `tools/weekly-scorecard.html` — logs weekly leads/contacts/conversations/offers/contracts, shows trend chart + week-over-week deltas + an "is it working?" signal based on activity. This is the feedback loop that fixes the consistency risk.
+
+
+### 2026-06-10 (strategy lock)
+- Reviewed an automated/co-wholesaling plan (mass SMS + 50/50 partner). Flagged mass cold-SMS as a TCPA legal landmine; co-wholesaling partner idea was strong but carries circumvention risk.
+- DECISION: User chose to go SOLO. Rationale: if solo works, upside is huge — keeps 100% of fee (~$10K avg vs ~$5K split), owns full acquisition + disposition skillset, no partner risk, builds the real long-term business.
+- Solo approach within a full-time AWS job = hardest path; mitigate with async-friendly lead gen (direct mail + weekend driving for dollars + probate records), evening/weekend seller calls via a separate Google Voice line, NO cold mass-SMS (legal risk), and the weekly scorecard to confirm the process is working through the pre-money stretch.
+- Confirmed market: base 22315 (Kingstowne), target PG County MD 20748 + 20745. Back to Phase 2 Step 2 (run comps on 10 sales).
