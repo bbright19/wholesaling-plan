@@ -52,7 +52,8 @@
 - `tools/weekly-scorecard.html` — weekly leading-indicator tracker (contacts/convos/offers) with trend + "is it working?" signal
 - `tools/index.html` — landing page linking tools
 - `templates/seller-scripts.md` — outreach + objection scripts
-- `templates/buyers-list.md` — cash buyers list template
+- `templates/buyers-list.md` — cash buyers list + **buy-box tracker** (pipeline table + per-buyer profile blocks; captures rehab budget that feeds the buyer repair cheat sheet)
+- `templates/finding-cash-buyers-playbook.md` — step-by-step process for sourcing cash buyers (county cash-sale records, "We Buy Houses" ads, REIA, online, title cos, auctions, data tools) + weekly routine
 - `templates/deal-checklist.md` — lead-to-close + legal checklist
 - `legal-notes.md` — DC/MD/VA wholesaling laws + attorney questions
 
@@ -127,3 +128,12 @@
 - **First market baseline (20748 SFR):** 42 sold comps → median **$225/sqft**, avg $243, range $100–$452. Logged in `market-research/comps-log.md`. Takeaways: median is the trustworthy number; wide spread is mixed condition/size; $/sqft inversely tracks size; median ≠ ARV (ARV = renovated value, lean to upper cluster).
 - Noted: image attachments in chat don't always reach Kiro — fall back to pasting numbers/text.
 - Next session: tighten to a similar-sqft comp set, isolate renovated $/sqft (true ARV basis), start driving-for-dollars + buyer rehab-budget asks.
+
+
+
+### 2026-06-10 (cash buyers strategy)
+- Covered how to find cash buyers. Key principle: build the buyers list BEFORE locking a deal so dispo takes days, not weeks.
+- Best sources (ranked): (1) county records — recent cash sales (deed with no deed of trust = cash buyer; repeat-buyer LLCs are A-list), (2) call "We Buy Houses" advertisers, (3) REIA/investor meetups, then online communities, investor-friendly title cos / hard money lenders, auctions, and data tools (PropStream/BatchLeads/DealMachine).
+- Upgraded `templates/buyers-list.md` into a buy-box tracker (pipeline table + per-buyer profile blocks). Created `templates/finding-cash-buyers-playbook.md` with the county-records step-by-step + weekly routine.
+- The buyer "rehab budget per sqft" question feeds the buyer repair cheat sheet — ask once, use in MAO math.
+- Next session (Phase 2/3 bridge): pull 6–12 months of 20748/20745 cash sales from mdlandrec.net + SDAT, list repeat-buyer LLCs, call 3–5 "We Buy Houses" ads, and pick one REIA meetup. Target 5–10 buyers to start the list.
