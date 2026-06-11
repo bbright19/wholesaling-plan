@@ -145,3 +145,11 @@
 - **mdlandrec.net:** signed up + verified email. Account is **pending manual approval** ("will notify when account is ready") — common for mdlandrec; can take a bit. Waiting on access.
 - **Meanwhile (no login needed):** start on **SDAT Real Property Search** (sdat.dat.maryland.gov/RealProperty) — look up recent 20748/20745 sales, note owner/LLC + sale price/date. Once mdlandrec access is live, open those deeds and check for a deed of trust (deed + NO mortgage = cash buyer).
 - Next: while mdlandrec approval is pending, build a starter list via SDAT + the fix-&-flip relist tactic, and log buyers/LLCs in `templates/buyers-list.md`.
+
+
+
+### 2026-06-11 (mdlandrec live + SDAT workflow)
+- **mdlandrec.net account ACTIVATED** — full deed access now available. Can run the deed-of-trust check (deed + NO deed of trust = cash buyer).
+- Practiced SDAT: looked up 3907 24th Ave (Temple Hills). Lesson learned reading a record — owner-occupant (individual owner, Principal Residence YES, mailing = premises) is NOT a cash buyer; recent $0 NON-ARMS LENGTH same-surname transfer = inherited/estate (a *seller-side* probate signal). Cash buyers show as LLC / Principal Residence NO / mailing ≠ premises / recent arms-length. Recording lag means last-week sales aren't posted yet — target 3–9 month-old sales. Added an SDAT record-reading mini-guide to the playbook (PR #6).
+- Repo visibility: deciding to make the GitHub repo **private** (business strategy + future lead data should not be public). Branch protection left as-is.
+- Next: run the Redfin sold list through SDAT → flag LLC/absentee owners → pull those deeds on mdlandrec to confirm cash → log buyers in `templates/buyers-list.md`.
