@@ -21,6 +21,28 @@ Cash buyers leave a paper trail: a recorded **deed with NO accompanying deed of 
 
 > Repeat-buyer LLCs are gold — they've bought multiple times and will buy again.
 
+**Shortcut — reuse your Redfin sold CSV as the input list.** You already export sold homes for comps; run those same addresses through SDAT to get owner/LLC + sale price, then mdlandrec for the mortgage check. No need to hunt addresses separately.
+
+**SDAT address-search tips (it's picky):**
+- Enter the number + bare street name only — **no suffix** (St/Ave/Dr/Rd/Ln), **no direction** (N/S/E/W). e.g. "3907 24th Ave" → Street #: `3907`, Street Name: `24th`.
+- Keep ordinals on numbered streets (`24th`, `27th`).
+- Nothing found? Truncate the street name to wildcard, or drop the street number to confirm the name.
+- SDAT can't search by owner, zip, or area — it's one address at a time (hence the Redfin-list shortcut).
+
+**How to READ an SDAT record (cash-buyer signals):**
+A current owner is likely a **cash investor** when:
+- ✅ Owner Name is an **LLC / company** (not an individual)
+- ✅ **Principal Residence: NO**
+- ✅ **Mailing Address ≠ Premises Address** (absentee owner)
+- ✅ Most recent transfer is **ARMS LENGTH** at a market price
+
+Skip it (owner-occupant, not a buyer) when: individual owner, **Principal Residence: YES**, mailing = premises.
+
+**Transfer Information — decode the types:**
+- **ARMS LENGTH** = real open-market sale (this is the buyer you may want).
+- **NON-ARMS LENGTH / $0** = family/estate/gift transfer. Same surname + $0 = likely **inherited** → that's a *seller-side probate signal*, not a buyer.
+- **Recording lag:** SDAT (and mdlandrec) post deeds weeks after closing, so last-week sales won't show the new owner yet. Target sales **~3–9 months old** for buyer hunting; use the **Deed Reference (Liber/Folio)** to pull the deed on mdlandrec.
+
 ### 2. Target "Fix & Flip" hotspots (proven active buyers)
 Find homes that were **bought and then re-listed a few months later** — that's a flipper actively working your area.
 1. On **Zillow / Redfin**, look for recent sales that came back on the market shortly after (short ownership window, often with a renovation bump in price).
