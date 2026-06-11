@@ -137,3 +137,11 @@
 - Upgraded `templates/buyers-list.md` into a buy-box tracker (pipeline table + per-buyer profile blocks). Created `templates/finding-cash-buyers-playbook.md` with the county-records step-by-step + weekly routine.
 - The buyer "rehab budget per sqft" question feeds the buyer repair cheat sheet — ask once, use in MAO math.
 - Next session (Phase 2/3 bridge): pull 6–12 months of 20748/20745 cash sales from mdlandrec.net + SDAT, list repeat-buyer LLCs, call 3–5 "We Buy Houses" ads, and pick one REIA meetup. Target 5–10 buyers to start the list.
+
+
+
+### 2026-06-11 (cash-buyer sourcing kicked off)
+- Clarified the right record tools vs. the wrong one: the county's generic CivicPlus "Create Website Account" (Display Name/About Me/Photo) is NOT the records search — skip it. Real tools: mdlandrec.net (deeds, free account), SDAT Real Property Search (ownership, no login), Maryland Judiciary Case Search (cases, no login).
+- **mdlandrec.net:** signed up + verified email. Account is **pending manual approval** ("will notify when account is ready") — common for mdlandrec; can take a bit. Waiting on access.
+- **Meanwhile (no login needed):** start on **SDAT Real Property Search** (sdat.dat.maryland.gov/RealProperty) — look up recent 20748/20745 sales, note owner/LLC + sale price/date. Once mdlandrec access is live, open those deeds and check for a deed of trust (deed + NO mortgage = cash buyer).
+- Next: while mdlandrec approval is pending, build a starter list via SDAT + the fix-&-flip relist tactic, and log buyers/LLCs in `templates/buyers-list.md`.
